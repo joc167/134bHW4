@@ -1,0 +1,119 @@
+<!Doctype html>
+<html>
+<head>
+
+  <style>
+    output{ border-style: double;
+            border-width: 5px;
+            padding: 10px;
+          }
+  </style>
+</head>
+<body>
+
+<h1>Simple Dialogs?</h1>
+
+<div class="btngrp">
+
+      <input type="button" value="Alert" onclick="aFunc()">
+      <input type="button" value="Confirm" onclick="cFunc()">
+      <input type="button" value="Prompt" onclick="pFunc()">
+      <input type="button" value="Safer Prompt" onclick="spFunc()">
+
+</div>
+
+<hr width="100%">
+<!--<textarea id="textArea">Confirm results:</textArea> -->
+  <output id="cresults" name="Confirm result">
+  </output>
+
+  <script type="text/javascript" >
+    //function for showalert
+    function aFunc()
+    {
+      alert("Alert pressed!");
+    }
+
+    //function for confirm
+    function cFunc() {
+       if( confirm("Did you confirm this?")){
+        document.getElementById("cresults").value ='Confirm results: true';
+       }
+       else{
+        document.getElementById("cresults").value ='Confirm results: false';
+       }
+    }
+
+  function pFunc(){
+    var pval = prompt("What is your name?");
+    if (pval == ""){
+        document.getElementById("cresults").innerHTML = "Prompt results: user didn't enter anything.";
+    }
+    else{
+        document.getElementById("cresults").innerHTML = "Prompt results: " + pval;
+    }
+  }
+/*
+  function spFunc(){
+    var txt;
+    var clean;
+    var pval = '';
+    var out = document.getElementById("cresults");
+    out.style.display = "none";
+    setTimeout(function(){
+       pval = prompt("What is your name?");
+      clean = DOMPurify.sanitize(pval);
+    if(clean =="" || clean == null){
+  //        document.getElementById("cresults").innerHTML
+        txt = "Prompt results: user didn't enter anything.";
+    }
+    else{
+  //        document.getElementById("cresults").innerHTML
+          txt = "Prompt results: " + clean;
+    }
+    out.innerHTML = txt;
+    out.style.display = "inline-block";
+  },100)
+  }
+*/
+    function spFunc(){
+    var txt;
+    var clean;
+    var spval = '';
+    out = document.getElementById("cresults");
+    //out.style.display = "none";
+
+    sTimeout(function(){
+    spval = prompt("What is your name?");
+    clean = DOMPurify.sanitize(spval);
+    if (clean == "" || clean == null){
+      //  document.getElementById("cresults").innerHTML
+        txt ="Prompt results: user didn't enter anything.";
+    }
+    else{
+        //document.getElementById("cresults").innerHTML =
+        txt = "Prompt results: " + clean;
+    }
+    out.innerHTML = txt;
+    out.style.display = "inline-block";
+  },100)
+
+  }
+
+  window.onload = function(){
+    var out = document.getElementById("cresults");
+  }
+  if(out.display.style == "none"){
+    out.display.style == "inline-block";
+  }
+  else{
+    out.display.style == "none";
+  }
+
+  </script>
+
+
+  <script type="text/javascript" src="src/purify.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify.0.8.2/purify.min.js"></script>
+</body>
+</html>

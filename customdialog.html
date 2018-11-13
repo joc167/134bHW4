@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> custom dialog </title>
+  <style>
+  output{
+          border-style: double;
+          border-width: 5px;
+          padding: 10px;
+        }
+  </style>
+</head>
+
+<body>
+
+<dialog id="alertDialog">
+  <form method="dialog">
+    <p><label>Alert Pressed! </label></p>
+    <menu>
+      <button>ok!</button>
+    </menu>
+  </form>
+</dialog>
+
+<dialog id="confirmDialog">
+  <form method="dialog">
+    <p><label> Do you confirm this? </label></p>
+    <menu>
+      <button id="cancButton">cancel</button>
+      <button id="confButton">confirm</button>
+    </menu>
+  </form>
+</dialog>
+
+<dialog id="promptDialog">
+  <form method="dialog">
+    <p><label> what is your name? </label></p>
+    <input id="nameId" type="text" name="firstName" value="">
+    <menu>
+      <button id="canButton">cancel</button>
+      <button id="conButton">confirm</button>
+    </menu>
+  </form>
+</dialog>
+
+
+<menu>
+  <button id="alertButton">Alert</button>
+  <button id="confirmButton">Confirm</button>
+  <button id="promptButton">Prompt</button>
+</menu>
+
+
+<output id="output">
+</output>
+
+<script src="customdialog.js"></script>
+</body>
+</html>
