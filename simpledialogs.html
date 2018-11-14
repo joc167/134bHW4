@@ -83,7 +83,7 @@
     out = document.getElementById("cresults");
     //out.style.display = "none";
 
-    sTimeout(function(){
+    setTimeout(function(){
     spval = prompt("What is your name?");
     clean = DOMPurify.sanitize(spval);
     if (clean == "" || clean == null){
@@ -97,10 +97,9 @@
     out.innerHTML = txt;
     out.style.display = "inline-block";
   },100)
-
   }
 
-  window.onload = function(){
+  /*window.onload = function(){
     var out = document.getElementById("cresults");
   }
   if(out.display.style == "none"){
@@ -109,11 +108,10 @@
   else{
     out.display.style == "none";
   }
-
+*/
   </script>
 
-
-  <script type="text/javascript" src="src/purify.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify.0.8.2/purify.min.js"></script>
+  <script src="DOMPurify/dist/purify.min.js"></script>
+  <!--<script type="text/javascript" src="src/purify.js"></script>-->
 </body>
 </html>

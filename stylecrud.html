@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Movie CRUD</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    input[type='submit'], button, [aria-label]{
+      cursor: pointer;
+    }
+    #spoiler{
+      display: none;
+    }
+    body{
+      max-width: 500px;
+      margin: auto;
+      background: #D2CE8D;
+      padding: 10px;
+    }
+    #counter{
+      font-size: 30px;
+    }
+    h1{
+      border-style: solid;
+      text-align: center;
+      padding: 20px;
+    }
+
+     li {
+      border: 3px solid #ddd; /* Add a thin border to each list item */
+      margin-top: -1px; /* Prevent double borders */
+      border-color: #8C2819;
+      background: #BE7BF0;
+      padding: 12px; /* Add some padding */
+      text-align:center;
+      font-size: 30px;
+      font: 200 18px/1.5 Georgia, Times New Roman, serif;
+     }
+
+  </style>
+</head>
+<body>
+
+  <h1> Big List of Movies </h1>
+
+<!-- Create dialog for adding new movies -->
+
+<dialog id="adDialog">
+<!--<form action="javascript:void(0);" method="POST" onsubmit="addMovie()">-->
+  <form method="dialog">
+    <label> Title: </label>
+    <input type="text" id="add-name"><br>
+    <label> Year: </label>
+    <input type="number" id="add-year"><br>
+    <label> Rating: </label>
+    <select id="add-rating">
+      <option value="G">G</option>
+      <option value="PG">PG</option>
+      <option value="PG-13">PG-13</option>
+      <option value="R">R</option>
+      <option value="NR">NR</option>
+      </select> <br>
+    <button id="addsave"> <i class="fa fa-save" style="font-size:30px"></i> </button>
+    <button id="canButton"><i class="fa fa-close" style="font-size:30px"></i></button>
+  </form>
+</dialog>
+
+<dialog id="editdialog">
+  <!--  <form action="javascript:void(0);" method="POST" id="saveEdit"> -->
+  <form method="dialog">
+    <label> Title: </label>
+    <input type="text" id="edit-name"> <br>
+    <label> Year: </label>
+    <input type="number" id="edit-year"> <br>
+    <label> Rating: </label>
+    <!--<input type="text" id="edit-rating"> <br>-->
+    <select id="edit-rating">
+      <option value="G">G</option>
+      <option value="PG">PG</option>
+      <option value="PG-13">PG-13</option>
+      <option value="R">R</option>
+      <option value="NR">NR</option>
+  </select><br>
+  <button id="editsave" value="save" /><i class="fa fa-pencil" style="font-size:30px"></i></button>
+   <buttonv id="closeEdit"><i class="fa fa-close" style="font-size:30px"></i></button>
+</form>
+ </form>
+</dialog>
+<!--</div>-->
+
+<dialog id="deletedialog">
+  <form method="dialog">
+    <p> Are you sure you want to delete?</p>
+    <button id="delButton" > <i class="fa fa-trash" style="font-size:30px"></i> </button>
+    <!--<input type="submit" value="delete" />-->
+    <button id="closedel"> <i class="fa fa-close" style="font-size:30px"></i> </button>
+  </form>
+</dialog>
+
+<p id="counter"> </p>
+
+<ul id="movieList"> </ul>
+<!--<table>
+    <th>Name</th> -->
+  <!--  <tbody id="movietable">  -->
+      <!--<tr> -->
+    <!--  <td id="movtitle"> </td>
+
+      <td id="movyear"> </td>
+      <td id="movrating"> </td> -->
+    <!--  </tr>
+        <tbody id="movtitle"> </tbody>
+</table>-->
+
+<button id="adB"  value="Add Movie">
+<i class="fa fa-plus" style="font-size:36px"></i>
+<i class="fa fa-file-movie-o" style="font-size:36px"></i>
+ </button>
+
+<script src="DOMPurify/dist/purify.min.js"></script>
+<script src="styledmovies.js"></script>
+</body>
+</html>

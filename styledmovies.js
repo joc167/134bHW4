@@ -10,9 +10,9 @@
   var movierating = ['PG','PG', 'PG', 'PG'];
 
 //SET the arrays in local storage to movietitle, movieyear, and movie rating
-localStorage.setItem("movietitle", JSON.stringify(null));
-localStorage.setItem("movieyear", JSON.stringify(null));
-localStorage.setItem("movierating", JSON.stringify(null));
+localStorage.setItem("movtitle", JSON.stringify(null));
+localStorage.setItem("movyear", JSON.stringify(null));
+localStorage.setItem("movrating", JSON.stringify(null));
 
   //counter  function to check the number of movies in the list
   function countF(datacount) {
@@ -41,10 +41,10 @@ localStorage.setItem("movierating", JSON.stringify(null));
    function displayMovies(){
 
      //call the local storage arrays and set them to local vars
-    var storedtitle = JSON.parse(localStorage.getItem("movietitle"));
-    var storedyear = JSON.parse(localStorage.getItem("movieyear"));
-    var storedrating = JSON.parse(localStorage.getItem("movierating"));
-    ;
+    var storedtitle = JSON.parse(localStorage.getItem("movtitle"));
+    var storedyear = JSON.parse(localStorage.getItem("movyear"));
+    var storedrating = JSON.parse(localStorage.getItem("movrating"));
+
     //if local storage array is null, set to empty array
     if (storedtitle == null)
     {
@@ -76,8 +76,8 @@ localStorage.setItem("movierating", JSON.stringify(null));
         data +=  storedtitle[i];
        data +=  " (" + storedyear[i] + ") " + ' ';
        data +=  "-Rated: " + storedrating[i] + ' ';
-        data += '<button onclick="editMovie(' + i + ')">Edit</button>';
-        data += '<button onclick="deleteMovie(' + i + ')">Delete</button>';
+        data += '<button onclick="editMovie(' + i + ')"><i class="fa fa-pencil" style="font-size:30px"></i></button>';
+        data += '<button onclick="deleteMovie(' + i + ')"><i class="fa fa-trash" style="font-size:30px"></i></button>';
         data +=  '</li>';
       }
     }
@@ -102,8 +102,8 @@ localStorage.setItem("movierating", JSON.stringify(null));
     });
 
       //close the dialog
-      var canButton = document.getElementById('cancedButton');
-      cancedButton.addEventListener('click', function(){
+      var canButton = document.getElementById('canButton');
+      canButton.addEventListener('click', function(){
         adialog.close();
       });
 
@@ -124,23 +124,21 @@ localStorage.setItem("movierating", JSON.stringify(null));
       var movie1 = addName.value;
       var year1 = addYear.value;
       var rating1 = addRating.value;
-
-      //purify the movies and the inputfields the user has entered.
-      movie= DOMPurify.sanitize(movie1);
-      year= DOMPurify.sanitize(year1);
-      rating= DOMPurify.sanitize(rating1);
+      movie = DOMPurify.sanitize(movie1);
+      year = DOMPurify.sanitize(year1);
+      rating = DOMPurify.sanitize(rating1);
       //if the add movie information has been filled out
     if (movie && year && rating) {
 
       // Add the new movie to the list
-    //  movietitle.push(movie.trim());
-    //  movieyear.push(year.trim());
-    //  movierating.push(rating.trim());
+      movietitle.push(movie.trim());
+      movieyear.push(year.trim());
+      movierating.push(rating.trim());
 
       //SET the arrays in local storage to movietitle, movieyear, and movie rating
-      var storedtitle = JSON.parse(localStorage.getItem("movietitle"));
-      var storedyear = JSON.parse(localStorage.getItem("movieyear"));
-      var storedrating = JSON.parse(localStorage.getItem("movierating"));
+      var storedtitle = JSON.parse(localStorage.getItem("movtitle"));
+      var storedyear = JSON.parse(localStorage.getItem("movyear"));
+      var storedrating = JSON.parse(localStorage.getItem("movrating"));
       //if arrays are set to null then create an empty array
       if (storedtitle == null)
       {
@@ -163,9 +161,9 @@ localStorage.setItem("movierating", JSON.stringify(null));
       storedrating.push(rating.trim());
 
       //store the updated array as the local storage array
-      localStorage.setItem("movietitle", JSON.stringify(storedtitle));
-      localStorage.setItem("movieyear", JSON.stringify(storedyear));
-      localStorage.setItem("movierating", JSON.stringify(storedrating));
+      localStorage.setItem("movtitle", JSON.stringify(storedtitle));
+      localStorage.setItem("movyear", JSON.stringify(storedyear));
+      localStorage.setItem("movrating", JSON.stringify(storedrating));
       // Reset input value
 //      addName.value = '';
 //      addYear.value = '';
@@ -191,32 +189,32 @@ localStorage.setItem("movierating", JSON.stringify(null));
     var eButton =  document.getElementById("editsave");
     eButton.addEventListener('click', function() {
       //reads in movie input information from dialog input
-      var editName1 = document.getElementById('edit-name');
-      var editYear1 = document.getElementById('edit-year');
-      var editRating1 = document.getElementById('edit-rating');
-
+      var editName = document.getElementById('edit-name');
+      var editYear = document.getElementById('edit-year');
+      var editRating = document.getElementById('edit-rating');
       // Display edit movie fields with current movie information
 
     //  editName.value = movietitle[item];
     //  editYear.value = movieyear[item];
     //  editRating.value = movierating[item];
 
-      var movie1 = editName1.value;
-      var year1 = editYear1.value;
-      var rating1 = editRating1.value;
+      //get the value from the input fields
+      var movie1 = editName.value;
+      var year1 = editYear.value;
+      var rating1 = editRating.value;
 
-      //purify the value of the fields the use inputted
-      movie= DOMPurify.sanitize(movie1);
-      year= DOMPurify.sanitize(year1);
-      rating= DOMPurify.sanitize(rating1);
+      //sanitize the values read from the input fields user entered
+      movie = DOMPurify.sanitize(movie1);
+      year = DOMPurify.sanitize(year1);
+      rating = DOMPurify.sanitize(rating1);
       //if movie information fields are filled out
       if (movie && year && rating) {
         // Edit value of current movie
 
         //retrieve local storage array into a local variable for this function
-        var storedtitle = JSON.parse(localStorage.getItem("movietitle"));
-        var storedyear = JSON.parse(localStorage.getItem("movieyear"));
-        var storedrating = JSON.parse(localStorage.getItem("movierating"));
+        var storedtitle = JSON.parse(localStorage.getItem("movtitle"));
+        var storedyear = JSON.parse(localStorage.getItem("movyear"));
+        var storedrating = JSON.parse(localStorage.getItem("movrating"));
 
         //edit the local array function before updating the local storage array
         storedtitle.splice(editindex, 1, movie.trim());
@@ -224,9 +222,9 @@ localStorage.setItem("movierating", JSON.stringify(null));
         storedrating.splice(editindex, 1, rating.trim());
 
         //update the local storage array with the newly updated array
-        localStorage.setItem("movietitle", JSON.stringify(storedtitle));
-        localStorage.setItem("movieyear", JSON.stringify(storedyear));
-        localStorage.setItem("movierating", JSON.stringify(storedrating));
+        localStorage.setItem("movtitle", JSON.stringify(storedtitle));
+        localStorage.setItem("movyear", JSON.stringify(storedyear));
+        localStorage.setItem("movrating", JSON.stringify(storedrating));
         // Display the new list
       }
         displayMovies();
@@ -253,9 +251,9 @@ var index = 0;
 dButton.addEventListener('click', function() {
 
   //retrieve the local storage array
-  var storedtitle = JSON.parse(localStorage.getItem("movietitle"));
-  var storedyear = JSON.parse(localStorage.getItem("movieyear"));
-  var storedrating = JSON.parse(localStorage.getItem("movierating"));
+  var storedtitle = JSON.parse(localStorage.getItem("movtitle"));
+  var storedyear = JSON.parse(localStorage.getItem("movyear"));
+  var storedrating = JSON.parse(localStorage.getItem("movrating"));
 
 //movietitle.splice(index, 1);
 //movieyear.splice(index, 1);
@@ -267,9 +265,9 @@ storedyear.splice(index, 1);
 storedrating.splice(index, 1);
 
 //store the local array into the local storage array
-localStorage.setItem("movietitle", JSON.stringify(storedtitle));
-localStorage.setItem("movieyear", JSON.stringify(storedyear));
-localStorage.setItem("movierating", JSON.stringify(storedrating));
+localStorage.setItem("movtitle", JSON.stringify(storedtitle));
+localStorage.setItem("movyear", JSON.stringify(storedyear));
+localStorage.setItem("movrating", JSON.stringify(storedrating));
 
   //display the list of movies
     displayMovies();
